@@ -2,12 +2,7 @@ import os
 import subprocess
 
 
-#clearing the console for a cooler look
-os.system("clear")
-os.system("cls")
-
 #adding the title ig
-
 print("""
 
   _____                       _       
