@@ -10,7 +10,7 @@
 
 ```
 
-This is a project i whipped up in like a single day lol
+This is a project i whipped up in like a single day lol, work in progress
 
 # How it Works
 uses ncat command to give reverse shell access to the attacker once the client opens the batch file.
