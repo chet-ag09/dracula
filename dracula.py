@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-
+os.system('cls' if os.name == 'nt' else 'clear')
 #adding the title ig
 print("""
 
@@ -24,7 +24,7 @@ def generate_and_execute_batch(port, shell):
 where ncat >nul 2>&1
 if %errorLevel% neq 0 (
     echo Ncat not found. Installing via winget...
-    winget install -e --id Nmap.Nmap
+    winget install -e --id Insecure.Nmap
 )
 
 :: Check for admin privileges
@@ -74,6 +74,6 @@ if "0" in main:
 
     generate_and_execute_batch(port_number, shell_type)
 elif "1" in main:
-    print("Dracula generate a batch file(works only on windows)")
+    print("Dracula generate a batch file(works only on windows)")#ADD ACTUAL HELP 
 else:
     exit()
