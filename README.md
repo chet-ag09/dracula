@@ -1,4 +1,5 @@
 **THIS IS ONLY FOR EDUCATIONAL PURPOSES, DO NOT USE THIS**
+NOTE TO SELF: THIS DOESNT WORK FOR SOME REASON, FIX THAT
 
 ```
         _____                       _       
