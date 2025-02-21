@@ -17,8 +17,12 @@ This is a project i whipped up in like a single day lol, work in progress
 uses ncat command to give reverse shell access to the attacker once the client opens the batch file.
 
 # How to Use
-1. Run the dracula.py file and enter the required info
-2. A batch file is generated 
+1. Install nmap (on linux systems)
+
+        sudo apt install nmap 
+
+2. Run the dracula.py file and enter the required info
+3. A batch file is generated 
 
 ### **Attacker's Side**
 
