@@ -12,7 +12,7 @@ print("""
  | |__| | | | (_| | (__| |_| | | (_| |
  |_____/|_|  \__,_|\___|\__,_|_|\__,_|
                                       
-        Reverse shell generator   v1                                      
+        Reverse shell generator                                       
 
 """)
 
@@ -20,12 +20,14 @@ print("""
 def generate_and_execute_batch(port, shell):
 
     batch_script = f"""@echo off
-:: To Check if Netcat is installed
-where ncat >nul 2>&1
-if %errorLevel% neq 0 (
-    echo Ncat not found. Installing via winget...
-    winget install -e --id Insecure.Nmap
-)
+
+echo MSGBOX "This program requires the usage of Nmap, please continue with installation" > %temp%\TEMPmessage.vbs
+call %temp%\TEMPmessage.vbs
+del %temp%\TEMPmessage.vbs /f /q
+
+:: Netcat install (assume user doesnt have)
+
+winget install -e --id Insecure.Nmap
 
 :: Check for admin privileges
 net session >nul 2>&1
