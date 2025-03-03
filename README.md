@@ -1,16 +1,18 @@
 **THIS IS ONLY FOR EDUCATIONAL PURPOSES, DO NOT USE THIS FOR ANY ILLEGAL ACTIVITIES**
 
 ```
-        _____                       _       
+         _____                       _       
         |  __ \                     | |      
-        | |  | |_ __ __ _  ___ _   _| | __ _ 
-        | |  | | '__/ _` |/ __| | | | |/ _` |
+        | |  | |_.__ __._  ___ _   _| | __._ 
+        | |  | |  __/ _  |/ __| | | | |/ _  |
         | |__| | | | (_| | (__| |_| | | (_| |
-        |_____/|_|  \__,_|\___|\__,_|_|\__,_|
+        |_____/|_|  \__._|\___|\__._|_|\__._|
 
 ```
 
-dracula is a reverse shell generator built around the cmd used for ncat reverse shell
+Dracula is a reverse shell generator built around the cmd used for ncat reverse shell
+
+<img src="Main/imgs/example.png">
 
 # How it Works
 uses ncat command to give reverse shell access to the attacker once the client opens the batch file.
