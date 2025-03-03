@@ -23,7 +23,7 @@ def print_banner():
         txt_color = colors[i % len(colors)]  # Cycle through selected colors
         colored_line = ''.join(f'\033[38;5;{txt_color}m{char}' for char in line)
         print(colored_line)
-    
+    print("[-] Developed by ch37")
     print('\033[0m')  # Reset color
     print("[-] Use -h for help")
 
