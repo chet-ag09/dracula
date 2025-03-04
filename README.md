@@ -10,12 +10,14 @@
 
 ```
 
+NOTE: ADD UPDATE README, make the dracula.py readable 
+
 Dracula is a reverse shell generator built to generate payloads
 
 <img src="Main/imgs/example.png">
 
 # How it Works
-uses ncat command to give reverse shell access to the attacker once the client opens the batch file.
+uses commands to give reverse shell access to the attacker once the client opens the batch file.
 
 # How to Use
 1. Install nmap (on linux systems)
@@ -27,6 +29,14 @@ uses ncat command to give reverse shell access to the attacker once the client o
 
 ### **Attacker's Side**
 Generate payload:
+
+1. Use payload type: 
+```
+Dracula >> set <payload_type> 
+```
+payload_type could be - 
+ 1. powershell_payload - for powershells or cmd
+2. ncat_payload - for ncat users
 
 ```
 Dracula >> -p <TARGET_PORT> -s <SHELL_TYPE> -o <OUTPUT_FILE_NAME>
