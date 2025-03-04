@@ -10,7 +10,7 @@
 
 ```
 
-Dracula is a reverse shell generator built around the cmd used for ncat reverse shell
+Dracula is a reverse shell generator built to generate payloads
 
 <img src="Main/imgs/example.png">
 
