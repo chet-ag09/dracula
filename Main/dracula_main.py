@@ -36,7 +36,6 @@ def listener(ip, port):
 
             client.send(command.encode())
 
-            # 🔥 FIXED OUTPUT HANDLING 🔥
             response = client.recv(4096).decode("cp1252", errors="ignore").strip()
             print(response)
 
