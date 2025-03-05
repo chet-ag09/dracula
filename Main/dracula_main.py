@@ -37,7 +37,7 @@ def listener(ip, port):
                 client.close()
                 break
             client.send(command.encode())
-            response = client.recv(4096).decode()
+            response = client.recv(4096).decode("cp1252") 
             print(response)
         except Exception as e:
             print(f"[-] Error: {e}")
