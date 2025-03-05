@@ -1,5 +1,4 @@
 import os
-import subprocess
 import argparse
 import Main.dracula_main as main
 
@@ -35,7 +34,7 @@ while True:
     
     parser = argparse.ArgumentParser(description="Generate a reverse shell payload in form of a batch file.")
     parser.add_argument("-PORT", "--port", help="Port number for the reverse shell")
-    parser.add_argument("-OUTPUT", "--output", help="Output file name")
+    parser.add_argument("-OUTFILE", "--output", help="Output file name")
     parser.add_argument("-CONNECT", "--connect", action="store_true", help="Connects with the target if the target opens the file")
     parser.add_argument("-IP", "--ip", help="Specify the IP address of the target")
 
