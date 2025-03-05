@@ -35,10 +35,8 @@ def listener(ip, port):
                 client.close()
                 break
 
-            client.send(command.encode())
-
-            # 🔥 FIXED OUTPUT HANDLING 🔥
-            response = client.recv(4096).decode("cp1252", errors="ignore").strip()
+            client.send(command.encode() + b"\n")
+            response = client.recv(4096).decode(errors="ignore")
             print(response)
     except (ConnectionResetError, KeyboardInterrupt):
         print("[-] Connection lost.")
