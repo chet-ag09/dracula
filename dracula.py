@@ -19,7 +19,7 @@ def print_banner():
     for i, line in enumerate(banner):
         txt_color = colors[i % len(colors)]
         print(''.join(f'\033[38;5;{txt_color}m{char}' for char in line))
-    print("[-] Developed by ch37\n\033[0m[-] Use -h for help")
+    print("[-]  by ch37\n\033[0m[-] Use -h for help")
 
 clear_screen()
 print_banner()

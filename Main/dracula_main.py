@@ -29,7 +29,7 @@ def listener(ip, port):
 
     try:
         while True:
-            command = input("Shell> ").strip()
+            command = input("\033[38;5;57mDracula_shell $> \033[0m ").strip()
             if command.lower() in ["exit", "quit"]:
                 client.send(b"exit")
                 client.close()
