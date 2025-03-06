@@ -41,9 +41,10 @@ while True:
     args = parser.parse_args(dracula_cm)
     powershell_script = main.generate_payload_ps(args.ip, args.port, args.output)
     try:
-        with open(args.output + ".bat", "w") as f:
+        print(powershell_script)
+        with open(args.output, "w") as f:
             f.write(powershell_script)
-            print(f"\n\033[38;5;69mSUCCESS!!! \033[0mCREATED {args.output}.bat ")
+            print(f"\n\033[38;5;69mSUCCESS!!! \033[0mCREATED {args.output} ")
     except Exception as e:
             print(f"\033[38;5;31mAn error occurred: {e}")
             

