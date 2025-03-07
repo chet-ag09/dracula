@@ -1,6 +1,7 @@
 import os
 import argparse
 import Main.dracula_main as main
+import Main.dracula_listener as listener
 
 
 #COLORS INITIALIZE
@@ -72,4 +73,4 @@ while True:
 
     if args.connect and args.port and args.ip:
         print(f"{BV}Starting listener on {args.ip}:{args.port}...")
-        main.listener(args.ip, args.port)
+        listener.listener(args.ip, args.port)
