@@ -1,4 +1,5 @@
 WIP, HASNT PROPERLY BEEN TESTED ON OTHER SYSTEMS
+works as of now
 # Dracula 
 
 Dracula is a Python-based tool designed to generate reverse shell payloads using PowerShell and Command Prompt. It provides options to create encoded payloads for stealth and supports direct connection to a target system once the payload is executed.
@@ -8,7 +9,7 @@ Dracula is a Python-based tool designed to generate reverse shell payloads using
 - Supports both plain text and Base64 encoded payloads
 - Allows automatic connection to a target after execution
 
-## How it works
+
 
 ## Installation
 Ensure you have Python installed, then clone this repository:
